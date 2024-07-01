@@ -190,20 +190,15 @@ def kfold_train_evaluate(model, X, y, nr_splits, callback, epoch_num):
     return histories
 
 
-def train_evaluate(model, X, y, callback, epoch_num, batch_size):
+def train_evaluate(model, X_train, X_val, y_train, y_val, callback, epoch_num, batch_size, class_weights_dict):
     # Split the dataset into training and validation sets
-    if tf.is_tensor(X):
-        X = X.numpy()
-
-    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-
     X_train = tf.constant(X_train)
     y_train_tensor = tf.constant(y_train)
     X_val = tf.constant(X_val)
     y_val_tensor = tf.constant(y_val)
 
     # Train the model
-    history = model.fit(X_train, y_train, epochs=epoch_num, batch_size=batch_size, callbacks=callback, validation_split=0.2)
+    history = model.fit(X_train, y_train, epochs=epoch_num, batch_size=batch_size, class_weight=class_weights_dict, callbacks=callback, validation_split=0.2)
 
     # Evaluate the model on the validation set
     y_pred_val = model.predict(X_val)
@@ -231,12 +226,8 @@ def train_evaluate(model, X, y, callback, epoch_num, batch_size):
     # Plot the loss curves
     return history.history
 
-def train_evaluate_2(model, X, y, callback, epoch_num, batch_size):
-    # Split the dataset into training and validation sets
-    if tf.is_tensor(X):
-        X = X.numpy()
-
-    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+def train_evaluate_2(model, X_train, X_val, y_train, y_val, callback, epoch_num, batch_size):
+    
     y_train = to_categorical(y_train)
     y_val = to_categorical(y_val)
 
