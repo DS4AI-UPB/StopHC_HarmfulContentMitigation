@@ -1,7 +1,7 @@
 # Harmful Speech Detection
 
 ## Introduction
-This project provides  a comprehensive approach to harmful speech detection using various natural language processing (NLP) techniques and embeddings. The notebook includes preprocessing steps, model training, hyperparameter tuning, and evaluation of models using different embedding techniques such as GloVe, BERT, RoBERTa, and Node2Vec.
+This project provides a comprehensive approach to harmful speech detection using various natural language processing (NLP) techniques and embeddings. The notebook includes preprocessing steps, model training, hyperparameter tuning, and evaluation of models using different embedding techniques such as GloVe, BERT, RoBERTa, and Node2Vec.
 
 ## Data Processing
 The dataset used in this notebook is extracted from the EXIST2023 dataset. The dataset contains tweets labeled with annotations for harmful speech and it also mentions a list of annotators with characteristics.
